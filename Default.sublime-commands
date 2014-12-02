@@ -1,0 +1,10 @@
+[
+	{
+		"caption": "HapoItak: Hello World",
+		"command": "hapo_itak_hello"
+	},
+	{
+		"caption": "HapoItak: Translate",
+		"command": "hapo_itak_translate"
+	},
+]
