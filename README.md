@@ -1,7 +1,6 @@
 # HapoItak
 
 HapoItak is a web-developr's toolkit that can improve your JAVA, JSP and HTML workflow.
-
 HapoItak parses english reduction expression you type, and produce output JAVA, JSP and HTML code.
 
 ## Example 1
