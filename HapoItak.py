@@ -1,5 +1,6 @@
 import sublime, sublime_plugin, re
 from .html import html
+from .html import midashi
 from .util import string_util
 from .util import sublime_view_util
 
@@ -166,6 +167,8 @@ class HapoItakTranslateCommand(sublime_plugin.TextCommand):
 			# HTML のための処理
 			if html.match_doc_type_series(self, edit, curr_pos, curr_region, curr_line_str):
 				return True
+			if midashi.match_midashi(self, edit, curr_pos, curr_region, curr_line_str):
+				return True
 			if html.match_html(self, edit, curr_pos, curr_region, curr_line_str):
 				return True
 			if html.match_link_javascript(self, edit, curr_pos, curr_region, curr_line_str):
@@ -174,7 +177,7 @@ class HapoItakTranslateCommand(sublime_plugin.TextCommand):
 				return True
 			if html.match_list(self, edit, curr_pos, curr_region, curr_line_str):
 				return True
-			if html.match_meta_utf(self, edit, curr_pos, curr_region, curr_line_str):
+			if html.match_meta_charset(self, edit, curr_pos, curr_region, curr_line_str):
 				return True
 			if html.match_no_cache(self, edit, curr_pos, curr_region, curr_line_str):
 				return True

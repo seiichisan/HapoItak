@@ -1,5 +1,17 @@
 {
+	"indent" : "\t",
+	"lang"   : "ja",
+	"charset": "UTF-8",
+	
 	"css_base_path": "css",
 	"javascript_base_path": "js",
-	"ul_default_class": "xxx"
+
+	"ul_default_class": "xxx",
+	
+	"h1_default_class" : "",
+	"h2_default_class" : "",
+	"h3_default_class" : "",
+	"h4_default_class" : "",
+	"h5_default_class" : "",
+	"h6_default_class" : ""
 }
