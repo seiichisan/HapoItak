@@ -151,7 +151,6 @@ class HapoItakTranslateCommand(sublime_plugin.TextCommand):
 		curr_line_str = self.view.substr(curr_region)
 
 		extension = sublime_view_util.get_extension_from_view(self)
-		# self.view.set_status("key2", "拡張子：" + extension)
 
 		# java ファイルのための処理
 		if extension == "java":

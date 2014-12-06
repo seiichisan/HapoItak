@@ -10,7 +10,6 @@ def get_no_cache(self):
 		sublime_view_util.get_indent(self) + "<meta http-equiv=\"cache-control\" content=\"no-cache\">\n" +\
 		sublime_view_util.get_indent(self) + "<meta http-equiv=\"Expires\"       content=\"0\">\n"
 	
-	#self.view.set_status("key21", "ノーキャッシュ")
 
 	return save
 
@@ -77,7 +76,6 @@ def get_link_style(self, css_base_path, stylesheet_name):
 # (1) link style ～
 ############################################################################
 def match_link_style(self, edit, curr_pos, curr_region, curr_line_str):
-	#self.view.set_status("key1", "設定の取得")
 
 	# 設定を取得します。
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
@@ -157,14 +155,12 @@ def match_html(self, edit, curr_pos, curr_region, curr_line_str):
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	css_base_path = hapo_settings.get("css_base_path")
 
-	# self.view.set_status("key3", "HTMLのマッチロジック")
 
 	pattern = r"html([45])"
 	matchOB = re.match(pattern, curr_line_str)
 	if matchOB:
 		temp_str = matchOB.group(1)
 		if temp_str == "4":
-			#self.view.set_status("key4", "HTML4だよねねね")
 			temp_str2 = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n" +\
 				"<html lang=\"" + sublime_view_util.get_lang(self) + "\">\n" +\
 				"<head>\n" +\
