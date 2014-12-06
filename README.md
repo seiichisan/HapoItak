@@ -4,7 +4,7 @@ HapoItak is a web-developr's toolkit that can improve your JAVA, JSP and HTML wo
 HapoItak parses english reduction expression you type, and produce output JAVA, JSP and HTML code.
 
 ## Example 1
-For example, this reduction expression:
+For example, In the file by which an extension is jsp, this reduction expression:
 
     jsf if
 
@@ -15,7 +15,7 @@ can be expanded into:
     </c:if>
 
 ## Example 2
-For example, this reduction expression:
+For example, In the file by which an extension is jsp, this reduction expression:
 
     jsf if else
 
@@ -29,7 +29,7 @@ can be expanded into:
     </c:if>
 
 ## Example 3
-For example, this reduction expression:
+For example, In the file by which an extension is java, this reduction expression:
 
     property userId ユーザID    
 
