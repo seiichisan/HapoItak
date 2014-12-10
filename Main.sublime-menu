@@ -11,14 +11,106 @@
 				[{
 					"caption":"HapoItak",
 					"children":
-						[{
-							"command":"open_file",
-							"args":
-								{
-									"file":"${packages}/HapoItak/HapoItak.sublime-settings"
-								},
-							"caption":"Settings a Default"
-						}]
+						[
+
+							// Settings - Default
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/Default/HapoItak.sublime-settings"
+									},
+								"caption":"Settings - Default"
+							},
+
+							// Settings - User
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/User/HapoItak.sublime-settings"
+									},
+								"caption":"Settings - User"
+							},
+
+
+							// ------------------------------------------------------------------------
+							// Key Bindings - Default
+							// ------------------------------------------------------------------------
+							// Key Bindings - Default (Windows)
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/Default/Default (Windows).sublime-keymap",
+										"platform": "Windows"
+									},
+								"caption":"Key Bindings - Default"
+							},
+
+							// Key Bindings - Default (OSX)
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/Default/Default (OSX).sublime-keymap",
+										"platform": "OSX"
+									},
+								"caption":"Key Bindings - Default"
+							},
+
+							// Key Bindings - Default (Linux)
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/Default/Default (Linux).sublime-keymap",
+										"platform": "Linux"
+									},
+								"caption":"Key Bindings - Default"
+							},
+
+
+							// ------------------------------------------------------------------------
+							// Key Bindings - User
+							// ------------------------------------------------------------------------
+							// Key Bindings - User (Windows)
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/User/Default (Windows).sublime-keymap",
+										"platform": "Windows"
+									},
+								"caption":"Key Bindings - User"
+							},
+
+							// Key Bindings - User (OSX)
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/User/Default (OSX).sublime-keymap",
+										"platform": "OSX"
+									},
+								"caption":"Key Bindings - User"
+							},
+
+							// Key Bindings - User (Linux)
+							{
+								"command":"open_file",
+								"args":
+									{
+										"file":"${packages}/HapoItak/User/Default (Linux).sublime-keymap",
+										"platform": "Linux"
+									},
+								"caption":"Key Bindings - User"
+							}
+
+
+
+						]
+
 				}]
 		}]
 }]

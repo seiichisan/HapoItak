@@ -1,10 +1,6 @@
 import sublime, sublime_plugin, re
-from .html import html
-from .html import midashi
 from .util import string_util
 from .util import sublime_view_util
-
-
 
 ############################################################################
 # 関数 Begin
@@ -12,11 +8,6 @@ from .util import sublime_view_util
 
 # ステータスバー表示
 # self.view.set_status("key1", "In sample_read_excel3")
-
-
-
-
-
 
 ############################################################################
 # プロパティにマッチします。
@@ -56,81 +47,6 @@ def match_property(self, edit, curr_pos, curr_region, curr_line_str):
 		return True
 	return False
 
-
-############################################################################
-# jsf 系メソッド Begin
-############################################################################
-
-############################################################################
-# jsf if タグを取得します。
-# if_flag が true  の場合、if   の働きをするタグを取得します。
-# if_flag が false の場合、else の働きをするタグを取得します。
-############################################################################
-def get_jsf_if_tag(if_flag):
-	if if_flag:
-		save = "<c:if test='${xxx == \"y\"}'>\n" +\
-			"\n" +\
-			"</c:if>\n"
-	else:
-		save = "<c:if test='${xxx != \"y\"}'>\n" +\
-			"\n" +\
-			"</c:if>\n"
-	return save
-
-
-############################################################################
-# jsf output text にマッチします。
-# (1) jsf output text
-############################################################################
-def match_jsf_three_word(self, edit, curr_pos, curr_region, curr_line_str):
-	pattern = r"\s*jsf\s+(.+)\s+(.+)"
-	matchOB = re.match(pattern, curr_line_str)
-	if matchOB:
-		temp_var1 = matchOB.group(1)
-		temp_var2 = matchOB.group(2)
-		if temp_var1 == "output" and temp_var2 == "text":
-			temp_str2 = "<h:outputText value=\"#{xxx}\" />"
-			self.view.replace(edit, curr_region, temp_str2)
-			return True
-		elif temp_var1 == "if" and temp_var2 == "else":
-			temp_str2 = get_jsf_if_tag(True) + get_jsf_if_tag(False)
-			self.view.replace(edit, curr_region, temp_str2)
-			return True
-	return False
-
-############################################################################
-# jsf if にマッチします。
-# (1) jsf if
-# (2) jsf button
-############################################################################
-def match_jsf_two_word(self, edit, curr_pos, curr_region, curr_line_str):
-	if match_jsf_three_word(self, edit, curr_pos, curr_region, curr_line_str):
-		return True
-
-	pattern = r"\s*jsf\s+(.+)"
-	matchOB = re.match(pattern, curr_line_str)
-	if matchOB:
-		temp_str = matchOB.group(1)
-		if temp_str == "if":
-			temp_str2 = get_jsf_if_tag(True)
-			self.view.replace(edit, curr_region, temp_str2)
-			return True
-		elif temp_str == "button":
-			temp_str2 = "<h:commandButton styleClass=\"xxx\" id=\"yyy\"\n" +\
-				"\tvalue=\"zzz\" action=\"#{XxxAction.yyy}\">\n" +\
-				"</h:commandButton>\n"
-			self.view.replace(edit, curr_region, temp_str2)
-			return True
-		elif temp_str == "hidden":
-			temp_str2 = "<h:inputHidden id=\"xxx\" value=\"#{xxx}\" />"
-			self.view.replace(edit, curr_region, temp_str2)
-			return True
-	return False
-
-############################################################################
-# jsf 系メソッド End
-############################################################################
-
 ############################################################################
 # 関数 End
 ############################################################################
@@ -150,38 +66,46 @@ class HapoItakTranslateCommand(sublime_plugin.TextCommand):
 		# 現在の行の内容（文字列）を取得します。
 		curr_line_str = self.view.substr(curr_region)
 
-		extension = sublime_view_util.get_extension_from_view(self)
+		# self.view.set_status("key1", "トランスレイト")
+		extension = sublime_view_util.get_extension_from_view(self.view)
+		# self.view.set_status("key2", "トランスレイト2")
 
 		# java ファイルのための処理
 		if extension == "java":
 			if match_property(self, edit, curr_pos, curr_region, curr_line_str):
+				# sublime_view_util.move_cursor(self, edit, 0, -5)
 				return True
 
-		# jsp のための処理
-		elif extension == "jsp":
-			if match_jsf_two_word(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
+		self.view.run_command('auto_complete', {
+			'disable_auto_insert'      : False,
+			'api_completions_only'     : True,
+			'next_competion_if_showing': False
+		})
 
-		if extension == "html" or extension == "jsp":
-			# HTML のための処理
-			if html.match_doc_type_series(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if midashi.match_midashi(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_html(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_link_javascript(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_link_style(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_list(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_meta_charset(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_no_cache(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
-			if html.match_put_html_series(self, edit, curr_pos, curr_region, curr_line_str):
-				return True
+	############################################################################
+	# クイックパネルに関連付けられたメソッドです。
+	# 選択時、InsertMyText メソッドを呼び出すことで、選択された文字列を挿入します。
+	############################################################################
+	def on_done(self, index):
+		if index != -1:
+			self.view.run_command("insert_my_text", {"args":{'text':self.list[index]}})
+
+############################################################################
+# クイックパネルの選択文字列を挿入するコマンドです。
+############################################################################
+class InsertMyText(sublime_plugin.TextCommand):
+	def run(self, edit, args):
+		# 現在のカーソル位置を取得します。
+		curr_pos = self.view.sel()[0].begin()
+		# 現在の単語のリージョンを取得します。
+		curr_region = self.view.word(curr_pos)
+
+		self.view.replace(edit, curr_region, args['text'])
+
+
+
+
+
 
 
 

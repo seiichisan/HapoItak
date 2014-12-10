@@ -2,13 +2,10 @@ import sublime, sublime_plugin, re
 
 ############################################################################
 # ファイル名の拡張子を取得します。
-# self sublime self
+# view sublime view
 ############################################################################
-def get_extension_from_view(self):
-	file_name = self.view.file_name()
-
-	# self.view.set_status("key1", "ファイル名：" + file_name)
-
+def get_extension_from_view(view):
+	file_name = view.file_name()
 	return get_extension(file_name)
 
 ############################################################################
@@ -26,56 +23,76 @@ def get_extension(text):
 	return extension
 
 
+
+
+
+
+
+
+
 ############################################################################
 # インデントを取得します。
-# self sublime self
 ############################################################################
-def get_indent(self):
+def get_indent():
 	# 設定を取得します。
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	indent = hapo_settings.get("indent")
-	# self.view.set_status("key10", "インデント")
 	return indent
 
 ############################################################################
-# lang を取得します。
-# self sublime self
+# css_base_path を取得します。
 ############################################################################
-def get_lang(self):
+def get_css_base_path():
+	# 設定を取得します。
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	css_base_path = hapo_settings.get("css_base_path")
+	return css_base_path
+
+############################################################################
+# javascript_base_path を取得します。
+############################################################################
+def get_javascript_base_path():
+	# 設定を取得します。
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	javascript_base_path = hapo_settings.get("javascript_base_path")
+	return javascript_base_path
+
+
+
+
+
+############################################################################
+# lang を取得します。
+############################################################################
+def get_lang():
 	# 設定を取得します。
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	lang = hapo_settings.get("lang")
-	# self.view.set_status("key11", "ラング")
 	return lang
 
 ############################################################################
 # charset を取得します。
-# self sublime self
 ############################################################################
-def get_charset(self):
+def get_charset():
 	# 設定を取得します。
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	charset = hapo_settings.get("charset")
-	# self.view.set_status("key12", "キャーセット")
 	return charset
 
 
 ############################################################################
 # ul_default_class を取得します。
-# self sublime self
 ############################################################################
-def get_ul_default_class(self):
+def get_ul_default_class():
 	# 設定を取得します。
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	ul_default_class = hapo_settings.get("ul_default_class")
-	# self.view.set_status("key12", "キャーセット")
 	return ul_default_class
 
 ############################################################################
 # h_default_class を取得します。
-# self sublime self
 ############################################################################
-def get_h_default_class(self, h_level):
+def get_h_default_class(h_level):
 	# 設定を取得します。
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	h_default_class = hapo_settings.get("h" + str(h_level) + "_default_class")
@@ -86,6 +103,30 @@ def get_h_default_class(self, h_level):
 
 
 
+
+
+
+
+
+############################################################################
+# 移動列数と移動行数を指定することにより、現在のカーソル位置を移動します。
+# move_col 移動列数
+# move_row 移動行数
+############################################################################
+def move_cursor(self, move_col, move_row):
+	# self.view.set_status("key1", "ムーブカーソル")
+
+	curr_col = self.view.rowcol(self.view.sel()[0].begin())[1]
+	curr_row = self.view.rowcol(self.view.sel()[0].begin())[0]
+
+	# self.view.set_status("key3", "現在のカーソル位置 = " + str(curr_col) + str(curr_row))
+
+	curr_col = curr_col + move_col
+	curr_row = curr_row + move_row
+
+	target = self.view.text_point(curr_row, curr_col)
+	self.view.sel().clear()
+	self.view.sel().add(sublime.Region(target))
 
 
 
