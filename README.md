@@ -9,11 +9,11 @@ Homepage is [HapoItak](https://tolemy.sakura.ne.jp/)
 ## Example 1
 For example, the following list is shown to input which is 'jsf_if'.
 
-1.jsf_if_a=b
-2.jsf_if_a=b_else
-3.jsf_hidden
-4.jsf_commandButton
-5.jsf_outputText
+1. jsf_if_a=b
+2. jsf_if_a=b_else
+3. jsf_hidden
+4. jsf_commandButton
+5. jsf_outputText
 
 For example, 'jsf_if_a=b' expression is expanded into:
 
