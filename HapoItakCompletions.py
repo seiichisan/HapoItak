@@ -20,42 +20,47 @@ from .util  import sublime_view_util
 ############################################################################
 # HTML に対する全オートコンプリートのリストを取得します。
 ############################################################################
-def get_html_completions(view):
+def get_html_completions(view, prefix):
 	completions = []
 
-	# doctype のオートコンプリート
-	comp_list = autocomp_doctype.autocomp_get_doctype(view)
-	completions.extend(comp_list)
-	# for comp in comp_list:
-	# 	completions.append(comp)
+	if prefix[0] == "d":
+		# doctype のオートコンプリート
+		comp_list = autocomp_doctype.autocomp_get_doctype(view)
+		completions.extend(comp_list)
 
-	# HTML4 のオートコンプリート
-	comp_list = autocomp_html.autocomp_get_html4(view)
-	completions.extend(comp_list)
+	elif prefix[0] == "h":
+		# HTML4 のオートコンプリート
+		comp_list = autocomp_html.autocomp_get_html4(view)
+		completions.extend(comp_list)
 
-	# HTML5 のオートコンプリート
-	completions.append(autocomp_html.autocomp_get_html5(view))
+		# HTML5 のオートコンプリート
+		completions.append(autocomp_html.autocomp_get_html5(view))
 
-	# list のオートコンプリート
-	comp_list = autocomp_list.autocomp_get_list(view)
-	completions.extend(comp_list)
+	elif prefix[0] == "l":
+		# list のオートコンプリート
+		comp_list = autocomp_list.autocomp_get_list(view)
+		completions.extend(comp_list)
+		# link style, link javascript のオートコンプリート
+		completions.append(autocomp_link.autocomp_get_link_style(view))
+		completions.append(autocomp_link.autocomp_get_link_javascript(view))
 
-	# number list のオートコンプリート
-	comp_list = autocomp_list.autocomp_get_number_list(view)
-	completions.extend(comp_list)
+	elif prefix[0] == "m":
+		# meta charset, no cache
+		completions.append(autocomp_meta.autocomp_meta_charset(view))
+		completions.append(autocomp_meta.autocomp_no_cache(view))
 
-	# meta charset, no cache, link style, link javascript のオートコンプリート
-	completions.append(autocomp_meta.autocomp_meta_charset(view))
-	completions.append(autocomp_meta.autocomp_no_cache(view))
-	completions.append(autocomp_link.autocomp_get_link_style(view))
-	completions.append(autocomp_link.autocomp_get_link_javascript(view))
+	elif prefix[0] == "n":
+		# number list のオートコンプリート
+		comp_list = autocomp_list.autocomp_get_number_list(view)
+		completions.extend(comp_list)
 
-	# style のオートコンプリート
-	comp_list = autocomp_style.autocomp_get_style(view)
-	completions.extend(comp_list)
+	elif prefix[0] == "s":
+		# style のオートコンプリート
+		comp_list = autocomp_style.autocomp_get_style(view)
+		completions.extend(comp_list)
 
-	# script のオートコンプリート
-	completions.append(autocomp_script.autocomp_get_script(view))
+		# script のオートコンプリート
+		completions.append(autocomp_script.autocomp_get_script(view))
 
 	return completions
 
@@ -73,7 +78,7 @@ class HapoItakCompletions(sublime_plugin.EventListener):
 		extension = sublime_view_util.get_extension(view.file_name())
 
 		if extension == "html" or extension == "jsp":
-			completions = get_html_completions(view)
+			completions = get_html_completions(view, prefix)
 
 		if extension == "jsp":
 			tmp_completions = autocomp_jsf_if.autocomp_get_jsf_if(view)

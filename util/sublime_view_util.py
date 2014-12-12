@@ -90,6 +90,18 @@ def get_ul_default_class():
 	return ul_default_class
 
 ############################################################################
+# ol_default_class を取得します。
+############################################################################
+def get_ol_default_class():
+	# 設定を取得します。
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	ol_default_class = hapo_settings.get("ol_default_class")
+	return ol_default_class
+
+
+
+
+############################################################################
 # h_default_class を取得します。
 ############################################################################
 def get_h_default_class(h_level):

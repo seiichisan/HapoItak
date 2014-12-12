@@ -7,6 +7,7 @@
 	"javascript_base_path": "js",
 
 	"ul_default_class": "xxx",
+	"ol_default_class": "ooo",
 	
 	"h1_default_class" : "",
 	"h2_default_class" : "",

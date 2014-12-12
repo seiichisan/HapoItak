@@ -17,7 +17,7 @@ def get_link_style(css_base_path, stylesheet_name, is_indent):
 	if is_indent:
 		indent = sublime_view_util.get_indent()
 
-	save = "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + \
+	save = indent + "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + \
 		tmp + ".css?v=0.1\" />"
 	return save
 
@@ -28,7 +28,8 @@ def autocomp_get_link_style(view):
 	# 設定を取得します。
 	css_base_path = sublime_view_util.get_css_base_path()
 
-	return ("link_style\tHapoItak", get_link_style(css_base_path, "$1", False))
+	return ("link_style_href=" + css_base_path + "/...\tHapoItak", \
+		get_link_style(css_base_path, "$1", False))
 
 
 
@@ -54,7 +55,8 @@ def autocomp_get_link_javascript(view):
 	# 設定を取得します。
 	javascript_base_path = sublime_view_util.get_javascript_base_path()
 
-	return ("link_javascript\tHapoItak", get_link_javascript(javascript_base_path, "$1"))
+	return ("link_js_src=" + javascript_base_path + "/...\tHapoItak", \
+		get_link_javascript(javascript_base_path, "$1"))
 
 
 
