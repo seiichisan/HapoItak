@@ -2,5 +2,9 @@
 	{
 		"caption": "HapoItak: Translate",
 		"command": "hapo_itak_translate"
+	},
+	{
+		"caption": "HapoItak: Replace Html Special Character Set",
+		"command": "hapo_itak_replace_html_special_character"
 	}
 ]

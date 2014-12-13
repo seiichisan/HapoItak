@@ -1,5 +1,8 @@
 [
 	{
 		"keys": ["ctrl+i"], "command": "hapo_itak_translate"
+	},
+	{
+		"keys": ["ctrl+alt+y"], "command": "hapo_itak_replace_html_special_character"
 	}
 ]

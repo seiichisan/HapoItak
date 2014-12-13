@@ -9,6 +9,11 @@ from .html  import autocomp_meta
 from .html  import autocomp_style
 from .html  import autocomp_script
 
+from .html  import autocomp_pre
+from .html  import autocomp_h
+
+
+
 from .jsf   import autocomp_jsf_button
 from .jsf   import autocomp_jsf_hidden
 from .jsf   import autocomp_jsf_if
@@ -36,6 +41,10 @@ def get_html_completions(view, prefix):
 		# HTML5 のオートコンプリート
 		completions.append(autocomp_html.autocomp_get_html5(view))
 
+		# h のオートコンプリート
+		comp_list = autocomp_h.autocomp_get_h_all(view)
+		completions.extend(comp_list)
+
 	elif prefix[0] == "l":
 		# list のオートコンプリート
 		comp_list = autocomp_list.autocomp_get_list(view)
@@ -53,6 +62,10 @@ def get_html_completions(view, prefix):
 		# number list のオートコンプリート
 		comp_list = autocomp_list.autocomp_get_number_list(view)
 		completions.extend(comp_list)
+
+	elif prefix[0] == "p":
+		# pre のオートコンプリート
+		completions.append(autocomp_pre.autocomp_get_pre(view))
 
 	elif prefix[0] == "s":
 		# style のオートコンプリート

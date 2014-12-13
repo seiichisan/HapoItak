@@ -6,9 +6,11 @@
 	"css_base_path": "css",
 	"javascript_base_path": "js",
 
-	"ul_default_class": "xxx",
-	"ol_default_class": "ooo",
+	"ul_default_class": "",
+	"ol_default_class": "",
 	
+	"pre_default_class" : "code",
+
 	"h1_default_class" : "",
 	"h2_default_class" : "",
 	"h3_default_class" : "",

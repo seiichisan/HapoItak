@@ -1,5 +1,31 @@
 import sublime, sublime_plugin, re
 
+
+
+############################################################################
+# HTML の特殊文字セットを変換します。
+############################################################################
+def replace_html_special_character(text):
+	save = ""
+
+	text_length = len(text)
+	i = 0
+	while i < text_length:
+		if text[i] == "<":
+			save = save + "&lt;"
+		elif text[i] == ">":
+			save = save + "&gt;"
+		elif text[i] == "\"":
+			save = save + "&quot;"
+		elif text[i] == "&":
+			save = save + "&amp;"
+		else:
+			save = save + text[i]
+		i = i + 1
+
+	return save
+
+
 ############################################################################
 # 文字列をパスカル形式へ変換します。
 ############################################################################

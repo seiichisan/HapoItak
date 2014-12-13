@@ -9,10 +9,12 @@
 	"ul_default_class": "xxx",
 	"ol_default_class": "ooo",
 	
-	"h1_default_class" : "",
-	"h2_default_class" : "",
-	"h3_default_class" : "",
-	"h4_default_class" : "",
-	"h5_default_class" : "",
-	"h6_default_class" : ""
+	"pre_default_class" : "xxx",
+
+	"h1_default_class" : "xxx",
+	"h2_default_class" : "yyy",
+	"h3_default_class" : "zzz",
+	"h4_default_class" : "aaa",
+	"h5_default_class" : "bbb",
+	"h6_default_class" : "ccc"
 }

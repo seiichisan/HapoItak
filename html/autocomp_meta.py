@@ -5,8 +5,11 @@ from ..util import sublime_view_util
 ############################################################################
 # meta charset 構文を取得します。
 ############################################################################
-def get_meta_charset():
-	save = sublime_view_util.get_indent() + \
+def get_meta_charset(indent_flag):
+	indent = ""
+	if indent_flag:
+		indent = sublime_view_util.get_indent()
+	save = indent + \
 		"<meta http-equiv=\"Content-Type\"  content=\"text/html; charset=" + \
 		sublime_view_util.get_charset() + "\">"
 	return save
@@ -15,7 +18,7 @@ def get_meta_charset():
 # meta charset に対するコンプリートメソッドです。
 ############################################################################
 def autocomp_meta_charset(view):
-	return ("meta_charset\tHapoItak", get_meta_charset())
+	return ("meta_charset\tHapoItak", get_meta_charset(False))
 
 
 
