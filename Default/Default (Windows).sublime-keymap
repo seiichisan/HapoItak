@@ -4,5 +4,8 @@
 	},
 	{
 		"keys": ["ctrl+alt+y"], "command": "hapo_itak_replace_html_special_character"
+	},
+	{
+		"keys": ["ctrl+alt+h"], "command": "hapo_itak_add_escape_to_double_quotation"
 	}
 ]

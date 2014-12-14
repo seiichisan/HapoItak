@@ -7,7 +7,7 @@ And also, HapoItak parses english reduction expression you type, and produce out
 Homepage is [HapoItak](https://tolemy.sakura.ne.jp/)
 
 ## Example 1
-For example, the following list is shown to input which is 'jsf_if'.
+For example, the following list is shown to input which is 'jsf'.
 
 1. jsf_if_a=b
 2. jsf_if_a=b_else

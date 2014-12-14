@@ -6,5 +6,9 @@
 	{
 		"caption": "HapoItak: Replace Html Special Character Set",
 		"command": "hapo_itak_replace_html_special_character"
+	},
+	{
+		"caption": "HapoItak: Add Escape To Double Quotation",
+		"command": "hapo_itak_add_escape_to_double_quotation"
 	}
 ]

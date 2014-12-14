@@ -6,15 +6,15 @@
 	"css_base_path": "css",
 	"javascript_base_path": "js",
 
-	"ul_default_class": "",
-	"ol_default_class": "",
+	"ul_default_class": "kajogaki",
+	"ol_default_class": "numberlist",
 	
 	"pre_default_class" : "code",
 
-	"h1_default_class" : "",
-	"h2_default_class" : "",
-	"h3_default_class" : "",
-	"h4_default_class" : "",
+	"h1_default_class" : "midashi1",
+	"h2_default_class" : "midashi2",
+	"h3_default_class" : "midashi3",
+	"h4_default_class" : "midashi4",
 	"h5_default_class" : "",
 	"h6_default_class" : ""
 }

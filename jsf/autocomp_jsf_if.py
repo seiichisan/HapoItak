@@ -9,11 +9,11 @@ from ..util import sublime_view_util
 ############################################################################
 def get_jsf_if_tag(if_flag):
 	if if_flag:
-		save = "<c:if test='\${$1 == \"$2\"}'>\n" +\
+		save = "<c:if test='\${${1:xxx} == \"${2:aaa}\"}'>\n" +\
 			"$3\n" +\
 			"</c:if>\n"
 	else:
-		save = "<c:if test='\${$4 != \"$5\"}'>\n" +\
+		save = "<c:if test='\${${4:xxx} != \"${5:aaa}\"}'>\n" +\
 			"$6\n" +\
 			"</c:if>\n"
 	return save

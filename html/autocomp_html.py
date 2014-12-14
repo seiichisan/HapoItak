@@ -29,8 +29,8 @@ def autocomp_get_html4_main(view, is_no_cache, is_style):
 	if is_no_cache:
 		ans += autocomp_meta.get_no_cache(True)
 	if is_style:
-		ans += autocomp_link.get_link_style(css_base_path, "$1", True) + "\n"
-	ans += sublime_view_util.get_indent() + "<title>${2:title}</title>\n" +\
+		ans += autocomp_link.get_link_style(css_base_path, "${1:xxx}", True) + "\n"
+	ans += sublime_view_util.get_indent() + "<title>${2:yyy}</title>\n" +\
 		"</head>\n" +\
 		"<body>\n" +\
 		"$3\n" +\
@@ -55,7 +55,7 @@ def autocomp_get_html5(view):
 		"<html lang=\"" + sublime_view_util.get_lang() + "\">\n" +\
 		"<head>\n" +\
 		sublime_view_util.get_indent() + "<meta charset=\"" + sublime_view_util.get_charset() + "\">\n" +\
-		sublime_view_util.get_indent() + "<title>$1</title>\n" +\
+		sublime_view_util.get_indent() + "<title>${1:xxx}</title>\n" +\
 		"</head>\n" +\
 		"<body>\n" +\
 		"$2\n" +\

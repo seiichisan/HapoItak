@@ -1,25 +1,59 @@
 import sublime
 import sublime_plugin
 
+from .css   import autocomp_css_hack
+
 from .html  import autocomp_doctype
+from .html  import autocomp_h
 from .html  import autocomp_html
 from .html  import autocomp_link
 from .html  import autocomp_list
 from .html  import autocomp_meta
+from .html  import autocomp_pre
 from .html  import autocomp_style
 from .html  import autocomp_script
-
-from .html  import autocomp_pre
-from .html  import autocomp_h
-
-
 
 from .jsf   import autocomp_jsf_button
 from .jsf   import autocomp_jsf_hidden
 from .jsf   import autocomp_jsf_if
 from .jsf   import autocomp_jsf_output
 
+from .jsf   import autocomp_jsf_taglib
+
+
 from .util  import sublime_view_util
+
+
+############################################################################
+# JSP に対する全オートコンプリートのリストを取得します。
+############################################################################
+def get_jsp_completions(view, prefix):
+	completions = []
+
+	if prefix[0] == "j":
+		comp_list = autocomp_jsf_if.autocomp_get_jsf_if(view)
+		completions.extend(comp_list)
+
+		completions.append(autocomp_jsf_button.autocomp_get_jsf_command_button(view))
+		completions.append(autocomp_jsf_hidden.autocomp_get_jsf_hidden(view))
+		completions.append(autocomp_jsf_output.autocomp_get_jsf_output_text(view))
+
+		comp_list = autocomp_jsf_taglib.autocomp_get_jsf_taglib(view)
+		completions.extend(comp_list)
+
+	return completions
+
+############################################################################
+# CSS に対する全オートコンプリートのリストを取得します。
+############################################################################
+def get_css_completions(view, prefix):
+	completions = []
+
+	if prefix[0] == "c":
+		comp_list = autocomp_css_hack.autocomp_get_css_hack(view)
+		completions.extend(comp_list)
+
+	return completions
 
 
 ############################################################################
@@ -90,15 +124,19 @@ class HapoItakCompletions(sublime_plugin.EventListener):
 
 		extension = sublime_view_util.get_extension(view.file_name())
 
-		if extension == "html" or extension == "jsp":
+		if extension == "html" or extension == "htm" or \
+			extension == "jsp" or extension == "erb":
+			
 			completions = get_html_completions(view, prefix)
 
-		if extension == "jsp":
-			tmp_completions = autocomp_jsf_if.autocomp_get_jsf_if(view)
-			completions.extend(tmp_completions)
+		if extension == "css" or extension == "html" or \
+			extension == "htm" or extension == "jsp":
+			
+			comp_list = get_css_completions(view, prefix)
+			completions.extend(comp_list)
 
-			completions.append(autocomp_jsf_button.autocomp_get_jsf_command_button(view))
-			completions.append(autocomp_jsf_hidden.autocomp_get_jsf_hidden(view))
-			completions.append(autocomp_jsf_output.autocomp_get_jsf_output_text(view))
+		if extension == "jsp":
+			comp_list = get_jsp_completions(view, prefix)
+			completions.extend(comp_list)
 
 		return (completions, sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
