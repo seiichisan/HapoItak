@@ -99,9 +99,7 @@ class HapoItakTranslateCommand(sublime_plugin.TextCommand):
 		# 現在の行の内容（文字列）を取得します。
 		curr_line_str = self.view.substr(curr_region)
 
-		# self.view.set_status("key1", "トランスレイト")
 		extension = sublime_view_util.get_extension_from_view(self.view)
-		# self.view.set_status("key2", "トランスレイト2")
 
 		# java ファイルのための処理
 		if extension == "java":

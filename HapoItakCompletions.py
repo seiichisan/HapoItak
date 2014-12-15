@@ -20,6 +20,7 @@ from .jsf   import autocomp_jsf_output
 
 from .jsf   import autocomp_jsf_taglib
 
+from .jsp   import autocomp_request
 
 from .util  import sublime_view_util
 
@@ -39,6 +40,10 @@ def get_jsp_completions(view, prefix):
 		completions.append(autocomp_jsf_output.autocomp_get_jsf_output_text(view))
 
 		comp_list = autocomp_jsf_taglib.autocomp_get_jsf_taglib(view)
+		completions.extend(comp_list)
+
+	if prefix[0] == "r":
+		comp_list = autocomp_request.autocomp_get_request(view)
 		completions.extend(comp_list)
 
 	return completions
@@ -99,7 +104,8 @@ def get_html_completions(view, prefix):
 
 	elif prefix[0] == "p":
 		# pre のオートコンプリート
-		completions.append(autocomp_pre.autocomp_get_pre(view))
+		comp_list = autocomp_pre.autocomp_get_pre(view)
+		completions.extend(comp_list)
 
 	elif prefix[0] == "s":
 		# style のオートコンプリート

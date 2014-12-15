@@ -90,6 +90,19 @@ def get_ul_default_class():
 	return ul_default_class
 
 ############################################################################
+# ul_count を取得します。
+############################################################################
+def get_ul_count():
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	ul_count = hapo_settings.get("ul_count")
+	return ul_count
+
+
+
+
+
+
+############################################################################
 # ol_default_class を取得します。
 ############################################################################
 def get_ol_default_class():
@@ -97,6 +110,26 @@ def get_ol_default_class():
 	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
 	ol_default_class = hapo_settings.get("ol_default_class")
 	return ol_default_class
+
+############################################################################
+# ol_count を取得します。
+############################################################################
+def get_ol_count():
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	ol_count = hapo_settings.get("ol_count")
+	return ol_count
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ############################################################################

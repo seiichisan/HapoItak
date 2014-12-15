@@ -21,11 +21,11 @@ def get_pre(pre_default_class):
 ############################################################################
 def autocomp_get_pre(view):
 	# 設定を取得します。
-	pre_default_class = sublime_view_util.get_pre_default_class()
+	pre_default_class_list = sublime_view_util.get_pre_default_class()
 
-	if pre_default_class == "":
-		return ("pre" + "\tHapoItak", get_pre(pre_default_class))
-	else:
-		return ("pre_class=" + pre_default_class + "\tHapoItak", \
-			get_pre(pre_default_class))
+	completions = []
+	for pre_default_class in pre_default_class_list:
+		completions.append(("pre_class=" + pre_default_class + \
+			"\tHapoItak", get_pre(pre_default_class)))
 
+	return completions
