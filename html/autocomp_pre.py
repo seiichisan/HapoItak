@@ -6,11 +6,7 @@ from ..util import sublime_view_util
 # pre タグを取得します。
 ############################################################################
 def get_pre(pre_default_class):
-	if pre_default_class is None or pre_default_class == "":
-		pre_default_class = ""
-	else:
-		pre_default_class = " class=\"" + pre_default_class + "\""
-
+	pre_default_class = " class=\"" + pre_default_class + "\""
 	save = "<pre" + pre_default_class + ">$1</pre>"
 
 	return save

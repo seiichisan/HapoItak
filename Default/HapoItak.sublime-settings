@@ -14,6 +14,9 @@
 	
 	"pre_default_class" : ["xxx", "yyy", "zzz"],
 
+	"p_default_class"   : ["xxx", "yyy", "zzz"],
+	"div_default_class" : ["xxx", "yyy", "zzz"],
+
 	"h1_default_class" : ["xxx", "yyy", "zzz"],
 	"h2_default_class" : ["xxx", "yyy", "zzz"],
 	"h3_default_class" : ["xxx", "yyy", "zzz"],

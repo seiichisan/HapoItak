@@ -142,6 +142,33 @@ def get_pre_default_class():
 	return pre_default_class
 
 
+############################################################################
+# p_default_class を取得します。
+############################################################################
+def get_p_default_class():
+	# 設定を取得します。
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	p_default_class = hapo_settings.get("p_default_class")
+	return p_default_class
+
+############################################################################
+# div_default_class を取得します。
+############################################################################
+def get_div_default_class():
+	# 設定を取得します。
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	div_default_class = hapo_settings.get("div_default_class")
+	return div_default_class
+
+
+
+
+
+
+
+
+
+
 
 
 

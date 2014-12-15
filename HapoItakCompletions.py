@@ -10,6 +10,10 @@ from .html  import autocomp_link
 from .html  import autocomp_list
 from .html  import autocomp_meta
 from .html  import autocomp_pre
+
+from .html  import autocomp_div
+from .html  import autocomp_p
+
 from .html  import autocomp_style
 from .html  import autocomp_script
 
@@ -72,6 +76,10 @@ def get_html_completions(view, prefix):
 		comp_list = autocomp_doctype.autocomp_get_doctype(view)
 		completions.extend(comp_list)
 
+		# div のオートコンプリート
+		comp_list = autocomp_div.autocomp_get_div(view)
+		completions.extend(comp_list)
+
 	elif prefix[0] == "h":
 		# HTML4 のオートコンプリート
 		comp_list = autocomp_html.autocomp_get_html4(view)
@@ -105,6 +113,10 @@ def get_html_completions(view, prefix):
 	elif prefix[0] == "p":
 		# pre のオートコンプリート
 		comp_list = autocomp_pre.autocomp_get_pre(view)
+		completions.extend(comp_list)
+
+		# p のオートコンプリート
+		comp_list = autocomp_p.autocomp_get_p(view)
 		completions.extend(comp_list)
 
 	elif prefix[0] == "s":
