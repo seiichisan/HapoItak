@@ -25,6 +25,7 @@ from .jsf   import autocomp_jsf_output
 from .jsf   import autocomp_jsf_taglib
 
 from .jsp   import autocomp_request
+from .jsp   import autocomp_jsp_code
 
 from .util  import sublime_view_util
 
@@ -44,6 +45,9 @@ def get_jsp_completions(view, prefix):
 		completions.append(autocomp_jsf_output.autocomp_get_jsf_output_text(view))
 
 		comp_list = autocomp_jsf_taglib.autocomp_get_jsf_taglib(view)
+		completions.extend(comp_list)
+
+		comp_list = autocomp_jsp_code.autocomp_get_jsp_code(view)
 		completions.extend(comp_list)
 
 	if prefix[0] == "r":

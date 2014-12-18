@@ -14,10 +14,13 @@
 	
 	"pre_default_class" : ["code", "xxx", "yyy"],
 
+	"p_default_class"   : ["para1", "para2", "para3"],
+	"div_default_class" : ["div1" , "div2" , "div3" ],
+
 	"h1_default_class" : ["midashi1", "xxx", "yyy"],
 	"h2_default_class" : ["midashi2", "xxx", "yyy"],
 	"h3_default_class" : ["midashi3", "xxx", "yyy"],
 	"h4_default_class" : ["midashi4", "xxx", "yyy"],
-	//"h5_default_class" : ["xxx", "yyy", "zzz"],
-	//"h6_default_class" : ["xxx", "yyy", "zzz"]
+	"h5_default_class" : ["xxx", "yyy", "zzz"],
+	"h6_default_class" : ["xxx", "yyy", "zzz"]
 }
