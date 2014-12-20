@@ -3,19 +3,25 @@ import sublime_plugin
 
 from .css   import autocomp_css_hack
 
+from .html  import autocomp_div
 from .html  import autocomp_doctype
 from .html  import autocomp_h
 from .html  import autocomp_html
 from .html  import autocomp_link
 from .html  import autocomp_list
 from .html  import autocomp_meta
-from .html  import autocomp_pre
 
-from .html  import autocomp_div
 from .html  import autocomp_p
+from .html  import autocomp_pre
 
 from .html  import autocomp_style
 from .html  import autocomp_script
+from .html  import autocomp_href
+
+
+
+
+from .javascript import autocomp_js_document
 
 from .jsf   import autocomp_jsf_button
 from .jsf   import autocomp_jsf_hidden
@@ -84,6 +90,10 @@ def get_html_completions(view, prefix):
 		comp_list = autocomp_div.autocomp_get_div(view)
 		completions.extend(comp_list)
 
+		# javascript document のオートコンプリート
+		comp_list = autocomp_js_document.autocomp_get_document(view, False)
+		completions.extend(comp_list)
+
 	elif prefix[0] == "h":
 		# HTML4 のオートコンプリート
 		comp_list = autocomp_html.autocomp_get_html4(view)
@@ -94,6 +104,10 @@ def get_html_completions(view, prefix):
 
 		# h のオートコンプリート
 		comp_list = autocomp_h.autocomp_get_h_all(view)
+		completions.extend(comp_list)
+
+		# a href のオートコンプリート
+		comp_list = autocomp_href.autocomp_get_href(view)
 		completions.extend(comp_list)
 
 	elif prefix[0] == "l":
@@ -142,6 +156,16 @@ class HapoItakCompletions(sublime_plugin.EventListener):
 	# オートコンプリートメソッド
 	############################################################################
 	def on_query_completions(self, view, prefix, locations):
+		# view.set_status("key1", "In sample_read_excel3")
+
+		# 現在のカーソル位置の単語を取得します。
+		curr_pos    = view.sel()[0].begin()
+		word_region = view.word(curr_pos)
+		word_str    = view.substr(word_region)
+		# view.set_status("key0", "ワードはね'" + word_str + "'")
+
+
+
 		completions = []
 
 		extension = sublime_view_util.get_extension(view.file_name())
