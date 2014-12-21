@@ -50,25 +50,27 @@ class HapoItakTranslateCommand(sublime_plugin.TextCommand):
 			'next_competion_if_showing': False
 		})
 
-	############################################################################
-	# クイックパネルに関連付けられたメソッドです。
-	# 選択時、InsertMyText メソッドを呼び出すことで、選択された文字列を挿入します。
-	############################################################################
-	def on_done(self, index):
-		if index != -1:
-			self.view.run_command("insert_my_text", {"args":{'text':self.list[index]}})
+# ############################################################################
+# # クイックパネルに関連付けられたメソッドです。
+# # 選択時、InsertMyText メソッドを呼び出すことで、選択された文字列を挿入します。
+# ############################################################################
+# def on_done(self, index):
+# 	if index != -1:
+# 		self.view.run_command("insert_my_text", {"args":{'text':self.list[index]}})
 
-############################################################################
-# クイックパネルの選択文字列を挿入するコマンドです。
-############################################################################
-class InsertMyText(sublime_plugin.TextCommand):
-	def run(self, edit, args):
-		# 現在のカーソル位置を取得します。
-		curr_pos = self.view.sel()[0].begin()
-		# 現在の単語のリージョンを取得します。
-		curr_region = self.view.word(curr_pos)
+# ############################################################################
+# # クイックパネルの選択文字列を挿入するコマンドです。
+# ############################################################################
+# class InsertMyText(sublime_plugin.TextCommand):
+# 	def run(self, edit, args):
+# 		self.view.set_status("key1", "クイックパネル")
+		
+# 		# 現在のカーソル位置を取得します。
+# 		curr_pos = self.view.sel()[0].begin()
+# 		# 現在の単語のリージョンを取得します。
+# 		curr_region = self.view.word(curr_pos)
 
-		self.view.replace(edit, curr_region, args['text'])
+# 		self.view.replace(edit, curr_region, args['text'])
 
 
 

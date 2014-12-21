@@ -18,7 +18,6 @@ class HapoItakReplaceHtmlSpecialCharacterCommand(sublime_plugin.TextCommand):
 		if extension == "html" or extension == "htm" or extension == "jsp":
 			selection_list = self.view.sel()
 			for region in selection_list:
-				# self.view.set_status("key1", "リプレイス")
 				if not region.empty():
 					selection = self.view.substr(region)
 					selection = string_util.replace_html_special_character(selection)
