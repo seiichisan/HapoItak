@@ -10,5 +10,8 @@
 	},
 	{
 		"keys": ["ctrl+alt+n"], "command": "hapo_itak_encirclement"
+	},
+	{
+		"keys": ["ctrl+alt+u"], "command": "hapo_itak_array_translation"
 	}
 ]

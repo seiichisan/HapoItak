@@ -122,6 +122,11 @@ def add_tag_to_outline(text, tag):
 	save = "<" + tag + ">" + text + "</" + tag + ">"
 	return save
 
+
+
+
+
+
 ############################################################################
 # text の最初と最後に tag を追加します。
 # 先頭の空白は無視します。
@@ -168,9 +173,226 @@ def add_tag_to_outline_every_line(text, tag):
 	return save
 
 
+############################################################################
+# text の一行毎の最後にカンマを付与します。
+############################################################################
+def add_comma_at_the_end_every_line(text):
+	text_array = text.split("\n")
+	text_array_length = len(text_array)
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if (i == text_array_length-1) and (len(text_line) == 0):
+			pass
+		else:
+			if i == text_array_length-2:
+				save = save + text_line
+			else:
+				save = save + \
+					add_word_to_end(text_line, ",")
+
+		if not(i == text_array_length-1):
+			save = save + "\n"
+
+		i = i + 1
+
+	return save
+
+############################################################################
+# text の単語毎の最後にカンマを付与します。
+############################################################################
+def add_comma_at_the_end_every_word(text):
+	text_array = text.split("\n")
+	text_array_length = len(text_array)
+
+	if len(text_array[text_array_length-1]) == 0:
+		is_semi_last = True
+	else:
+		is_semi_last = False
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if i == text_array_length-2 and is_semi_last:
+			save = save + add_comma_at_the_end_every_word_main(text_line, True)
+		elif i == text_array_length-1:
+			save = save + add_comma_at_the_end_every_word_main(text_line, True)
+		else:
+			save = save + add_comma_at_the_end_every_word_main(text_line, False)
+		if not(i == text_array_length-1):
+			save = save + "\n"
+		i = i + 1
+
+	return save
+
+
+############################################################################
+# text の単語毎の最後にカンマを付与します。
+############################################################################
+def add_comma_at_the_end_every_word_main(text, is_last_line):
+	text_array = text.split(" ")
+	text_array_length = len(text_array)
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if len(text_line) == 0:
+			pass
+		elif not(is_last_line):
+			save = save + add_word_to_end(text_line, ",")
+		elif i == text_array_length-1:
+			save = save + text_line
+		else:
+			save = save + add_word_to_end(text_line, ",")
+
+		if not(i == text_array_length-1):
+			save = save + " "
+
+		i = i + 1
+
+	return save
 
 
 
+
+
+
+############################################################################
+# ダブルクォーテーションで一行毎の text を囲みます。
+# 先頭の空白は無視して、ダブルクォーテーションで text を囲みます。
+# 各行の最後には、カンマを付与します。
+# 最後行のだけ最後尾のカンマ付与をスキップします。
+############################################################################
+def wrap_double_quotation_every_line(text):
+	text_array = text.split("\n")
+	text_array_length = len(text_array)
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if (i == text_array_length-1) and (len(text_line) == 0):
+			pass
+		else:
+			if i == text_array_length-2:
+				save = save + \
+					wrap_double_quotation_to_outline(text_line, True)
+			else:
+				save = save + \
+					wrap_double_quotation_to_outline(text_line, False)
+
+		if not(i == text_array_length-1):
+			save = save + "\n"
+
+		i = i + 1
+
+	return save
+
+
+
+
+
+############################################################################
+# ダブルクォーテーションで単語毎の text を囲みます。
+# 先頭の空白は無視して、ダブルクォーテーションで text を囲みます。
+# 各単語の最後には、カンマを付与します。
+# 最後だけ最後尾のカンマ付与をスキップします。
+############################################################################
+def wrap_double_quotation_every_word(text):
+	text_array = text.split("\n")
+	text_array_length = len(text_array)
+
+	if len(text_array[text_array_length-1]) == 0:
+		is_semi_last = True
+	else:
+		is_semi_last = False
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if i == text_array_length-2 and is_semi_last:
+			save = save + wrap_double_quotation_every_word_main(text_line, True)
+		elif i == text_array_length-1:
+			save = save + wrap_double_quotation_every_word_main(text_line, True)
+		else:
+			save = save + wrap_double_quotation_every_word_main(text_line, False)
+		if not(i == text_array_length-1):
+			save = save + "\n"
+		i = i + 1
+
+	return save
+
+############################################################################
+# ダブルクォーテーションで単語毎の text を囲みます。
+# 先頭の空白は無視して、ダブルクォーテーションで text を囲みます。
+# 各単語の最後には、カンマを付与します。
+# 最後だけ最後尾のカンマ付与をスキップします。
+############################################################################
+def wrap_double_quotation_every_word_main(text, is_last_line):
+	if len(text) == 0:
+		return ""
+
+	text_array = text.split(" ")
+	text_array_length = len(text_array)
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if len(text_line) == 0:
+			pass
+		elif not(is_last_line):
+			save = save + \
+				wrap_double_quotation_to_outline(text_line, False)
+		elif i == text_array_length-1:
+			save = save + \
+				wrap_double_quotation_to_outline(text_line, True)
+		else:
+			save = save + \
+				wrap_double_quotation_to_outline(text_line, False)
+
+		if not(i == text_array_length-1):
+			save = save + " "
+
+		i = i + 1
+
+	return save
+
+
+
+
+
+
+
+
+
+
+############################################################################
+# ダブルクォーテーションで text を囲みます。
+# 先頭の空白は無視して、ダブルクォーテーションで text を囲みます。
+# is_last_line が false の場合、最後にカンマを付けます。
+############################################################################
+def wrap_double_quotation_to_outline(text, is_last_line):
+	text_length = len(text)
+	i = 0
+	while i < text_length:
+		if text[i] == " " or text[i] == "\t":
+			pass
+		else:
+			break
+
+		i = i + 1
+
+	if i > 0:
+		save = text[0:i] + "\"" + text[i:text_length] + "\""
+	else:
+		save = "\"" + text + "\""
+
+	if is_last_line:
+		pass
+	else:
+		save = save + ","
+
+	return save
 
 
 
