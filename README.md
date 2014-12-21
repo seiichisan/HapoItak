@@ -12,16 +12,22 @@ Homepage is [HapoItak](https://tolemy.sakura.ne.jp/)
 HapoItak replace html special character with html entities by 'ctrl+alt+y' key input.
 
 Before
+
 ![before and after 1](https://tolemy.sakura.ne.jp/img/01_beforeSpecialReplace.JPG)
+
 After
+
 ![before and after 2](https://tolemy.sakura.ne.jp/img/02_afterSpecialReplace.JPG)
 
 ## Example 2
 HapoItak escape double quotation by 'ctrl+alt+h' key input.
 
 Before
+
 ![before and after 3](https://tolemy.sakura.ne.jp/img/03_beforeEscapeDoubleQ.JPG)
+
 After
+
 ![before and after 4](https://tolemy.sakura.ne.jp/img/04_afterEscapeDoubleQ.JPG)
 
 ## Example 3
