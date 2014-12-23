@@ -6,21 +6,21 @@
 	"css_base_path": "css",
 	"javascript_base_path": "js",
 
-	"ul_default_class": ["kajogaki"  , "xxx", "yyy"],
+	"ul_default_class": ["kajogaki"],
 	"ul_count"        : [3, 5, 7],
 
-	"ol_default_class": ["numberlist", "xxx", "yyy"],
+	"ol_default_class": ["numberlist"],
 	"ol_count"        : [3, 5, 7],
 	
-	"pre_default_class" : ["code", "xxx", "yyy"],
+	"pre_default_class" : ["code", "codenomargin"],
 
 	"p_default_class"   : ["para1", "para2", "para3"],
 	"div_default_class" : ["div1" , "div2" , "div3" ],
 
-	"h1_default_class" : ["midashi1", "xxx", "yyy"],
-	"h2_default_class" : ["midashi2", "xxx", "yyy"],
-	"h3_default_class" : ["midashi3", "xxx", "yyy"],
-	"h4_default_class" : ["midashi4", "xxx", "yyy"],
-	"h5_default_class" : ["xxx", "yyy", "zzz"],
-	"h6_default_class" : ["xxx", "yyy", "zzz"]
+	"h1_default_class" : ["midashi1", "classich1"],
+	"h2_default_class" : ["midashi2", "classich2"],
+	"h3_default_class" : ["midashi3", "classich3"],
+	"h4_default_class" : ["midashi4", "classich4"],
+	"h5_default_class" : ["midashi5", "classich5"],
+	"h6_default_class" : ["midashi6", "classich6"]
 }

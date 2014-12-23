@@ -2,7 +2,6 @@
 
 HapoItak is a web-developr's powerful toolkit that can improve your HTML, JSP and JAVA workflow.
 HapoItak adds aditional auto-completion capability to edit file of HTML, JSP AND JAVA. The code longer than usual can be able to complemented by HapoItak.
-And also, HapoItak replace html special character with html entities by 'ctrl+alt+y' key input.
 
 And also, HapoItak has some conversion function.
 For example, HapoItak adds comma to each word and wrap each word with double quotation.

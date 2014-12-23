@@ -1,16 +1,14 @@
 import sublime, sublime_plugin, re
 
-
-
 ############################################################################
-# ダブルクォーテーションに対して、エスケープシーケンスを付与します。
+# ダブルクォーテーションとバックスラッシュをエスケープします。
 ############################################################################
 def add_escape_sequence_to_double_quotation(text):
 	save = ""
 	text_length = len(text)
 	i = 0
 	while i < text_length:
-		if text[i] == "\"":
+		if text[i] == "\"" or text[i] == "\\":
 			save = save + "\\"
 		save = save + text[i]
 		i = i + 1
@@ -86,6 +84,13 @@ def to_camel_style(text):
 
 
 
+
+
+
+############################################################################
+# word 付与系 Begin
+############################################################################
+
 ############################################################################
 # text における一行毎の最後に word を追加します。
 ############################################################################
@@ -116,16 +121,30 @@ def add_word_to_end(text, word):
 	return save
 
 ############################################################################
+# word 付与系 End
+############################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+############################################################################
+# tag 付与系 Begin
+############################################################################
+
+############################################################################
 # text の最初と最後に tag を追加します。
 ############################################################################
 def add_tag_to_outline(text, tag):
 	save = "<" + tag + ">" + text + "</" + tag + ">"
 	return save
-
-
-
-
-
 
 ############################################################################
 # text の最初と最後に tag を追加します。
@@ -172,6 +191,26 @@ def add_tag_to_outline_every_line(text, tag):
 
 	return save
 
+############################################################################
+# tag 付与系 End
+############################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################################################################
+# カンマ付与処理系 Begin
+############################################################################
 
 ############################################################################
 # text の一行毎の最後にカンマを付与します。
@@ -201,6 +240,7 @@ def add_comma_at_the_end_every_line(text):
 
 ############################################################################
 # text の単語毎の最後にカンマを付与します。
+# 行分割を行い、行毎に処理を行います。
 ############################################################################
 def add_comma_at_the_end_every_word(text):
 	text_array = text.split("\n")
@@ -226,9 +266,9 @@ def add_comma_at_the_end_every_word(text):
 
 	return save
 
-
 ############################################################################
 # text の単語毎の最後にカンマを付与します。
+# 一行を単語で分割し、単語毎に処理を行います。
 ############################################################################
 def add_comma_at_the_end_every_word_main(text, is_last_line):
 	text_array = text.split(" ")
@@ -253,10 +293,23 @@ def add_comma_at_the_end_every_word_main(text, is_last_line):
 
 	return save
 
+############################################################################
+# カンマ付与処理系 End
+############################################################################
 
 
 
 
+
+
+
+
+
+
+
+############################################################################
+# ダブルクォーテーションで囲む系 Begin
+############################################################################
 
 ############################################################################
 # ダブルクォーテーションで一行毎の text を囲みます。
@@ -264,7 +317,7 @@ def add_comma_at_the_end_every_word_main(text, is_last_line):
 # 各行の最後には、カンマを付与します。
 # 最後行のだけ最後尾のカンマ付与をスキップします。
 ############################################################################
-def wrap_double_quotation_every_line(text):
+def wrap_double_quotation_every_line(text, is_double_quotation):
 	text_array = text.split("\n")
 	text_array_length = len(text_array)
 
@@ -276,10 +329,10 @@ def wrap_double_quotation_every_line(text):
 		else:
 			if i == text_array_length-2:
 				save = save + \
-					wrap_double_quotation_to_outline(text_line, True)
+					wrap_double_quotation_to_outline(text_line, True, is_double_quotation)
 			else:
 				save = save + \
-					wrap_double_quotation_to_outline(text_line, False)
+					wrap_double_quotation_to_outline(text_line, False, is_double_quotation)
 
 		if not(i == text_array_length-1):
 			save = save + "\n"
@@ -288,17 +341,13 @@ def wrap_double_quotation_every_line(text):
 
 	return save
 
-
-
-
-
 ############################################################################
 # ダブルクォーテーションで単語毎の text を囲みます。
 # 先頭の空白は無視して、ダブルクォーテーションで text を囲みます。
 # 各単語の最後には、カンマを付与します。
 # 最後だけ最後尾のカンマ付与をスキップします。
 ############################################################################
-def wrap_double_quotation_every_word(text):
+def wrap_double_quotation_every_word(text, is_double_quotation):
 	text_array = text.split("\n")
 	text_array_length = len(text_array)
 
@@ -311,11 +360,11 @@ def wrap_double_quotation_every_word(text):
 	save = ""
 	for text_line in text_array:
 		if i == text_array_length-2 and is_semi_last:
-			save = save + wrap_double_quotation_every_word_main(text_line, True)
+			save = save + wrap_double_quotation_every_word_main(text_line, True, is_double_quotation)
 		elif i == text_array_length-1:
-			save = save + wrap_double_quotation_every_word_main(text_line, True)
+			save = save + wrap_double_quotation_every_word_main(text_line, True, is_double_quotation)
 		else:
-			save = save + wrap_double_quotation_every_word_main(text_line, False)
+			save = save + wrap_double_quotation_every_word_main(text_line, False, is_double_quotation)
 		if not(i == text_array_length-1):
 			save = save + "\n"
 		i = i + 1
@@ -328,7 +377,7 @@ def wrap_double_quotation_every_word(text):
 # 各単語の最後には、カンマを付与します。
 # 最後だけ最後尾のカンマ付与をスキップします。
 ############################################################################
-def wrap_double_quotation_every_word_main(text, is_last_line):
+def wrap_double_quotation_every_word_main(text, is_last_line, is_double_quotation):
 	if len(text) == 0:
 		return ""
 
@@ -342,13 +391,13 @@ def wrap_double_quotation_every_word_main(text, is_last_line):
 			pass
 		elif not(is_last_line):
 			save = save + \
-				wrap_double_quotation_to_outline(text_line, False)
+				wrap_double_quotation_to_outline(text_line, False, is_double_quotation)
 		elif i == text_array_length-1:
 			save = save + \
-				wrap_double_quotation_to_outline(text_line, True)
+				wrap_double_quotation_to_outline(text_line, True, is_double_quotation)
 		else:
 			save = save + \
-				wrap_double_quotation_to_outline(text_line, False)
+				wrap_double_quotation_to_outline(text_line, False, is_double_quotation)
 
 		if not(i == text_array_length-1):
 			save = save + " "
@@ -357,21 +406,18 @@ def wrap_double_quotation_every_word_main(text, is_last_line):
 
 	return save
 
-
-
-
-
-
-
-
-
-
 ############################################################################
 # ダブルクォーテーションで text を囲みます。
 # 先頭の空白は無視して、ダブルクォーテーションで text を囲みます。
 # is_last_line が false の場合、最後にカンマを付けます。
+# is_double_quotation が true の場合、ダブルクォーテーションで囲みます。
 ############################################################################
-def wrap_double_quotation_to_outline(text, is_last_line):
+def wrap_double_quotation_to_outline(text, is_last_line, is_double_quotation):
+	if is_double_quotation:
+		kakomi_moji = "\""
+	else:
+		kakomi_moji = "'"
+
 	text_length = len(text)
 	i = 0
 	while i < text_length:
@@ -383,9 +429,9 @@ def wrap_double_quotation_to_outline(text, is_last_line):
 		i = i + 1
 
 	if i > 0:
-		save = text[0:i] + "\"" + text[i:text_length] + "\""
+		save = text[0:i] + kakomi_moji + text[i:text_length] + kakomi_moji
 	else:
-		save = "\"" + text + "\""
+		save = kakomi_moji + text + kakomi_moji
 
 	if is_last_line:
 		pass
@@ -394,6 +440,9 @@ def wrap_double_quotation_to_outline(text, is_last_line):
 
 	return save
 
+############################################################################
+# ダブルクォーテーションで囲む系 End
+############################################################################
 
 
 

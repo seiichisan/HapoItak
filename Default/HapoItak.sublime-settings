@@ -6,21 +6,21 @@
 	"css_base_path": "css",
 	"javascript_base_path": "js",
 
-	"ul_default_class": ["xxx", "yyy", "zzz"],
+	"ul_default_class": ["xxx"],
 	"ul_count"        : [3, 5, 7],
 
-	"ol_default_class": ["xxx", "yyy", "zzz"],
+	"ol_default_class": ["xxx"],
 	"ol_count"        : [3, 5, 7],
 	
-	"pre_default_class" : ["xxx", "yyy", "zzz"],
+	"pre_default_class" : ["xxx"],
 
-	"p_default_class"   : ["xxx", "yyy", "zzz"],
-	"div_default_class" : ["xxx", "yyy", "zzz"],
+	"p_default_class"   : ["xxx"],
+	"div_default_class" : ["xxx"],
 
-	"h1_default_class" : ["xxx", "yyy", "zzz"],
-	"h2_default_class" : ["xxx", "yyy", "zzz"],
-	"h3_default_class" : ["xxx", "yyy", "zzz"],
-	"h4_default_class" : ["xxx", "yyy", "zzz"],
-	"h5_default_class" : ["xxx", "yyy", "zzz"],
-	"h6_default_class" : ["xxx", "yyy", "zzz"]
+	"h1_default_class" : ["xxx"],
+	"h2_default_class" : ["xxx"],
+	"h3_default_class" : ["xxx"],
+	"h4_default_class" : ["xxx"],
+	"h5_default_class" : ["xxx"],
+	"h6_default_class" : ["xxx"]
 }
