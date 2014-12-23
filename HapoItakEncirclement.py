@@ -1,7 +1,7 @@
 import sublime, sublime_plugin, re
 
 from .util import string_util
-from .util import sublime_view_util
+# from .util import sublime_view_util
 
 
 
@@ -12,12 +12,30 @@ CONST_BR_SLASH = "br/"
 CONST_BR       = "br"
 CONST_TD       = "td"
 CONST_LI       = "li"
+CONST_P        = "p"
+CONST_H1       = "h1"
+CONST_H2       = "h2"
+CONST_H3       = "h3"
+CONST_H4       = "h4"
+CONST_H5       = "h5"
+CONST_H6       = "h6"
 
 CONST_BR_SLASH_EVERY_LINE = "br/_in_every_line"
 CONST_BR_EVERY_LINE       = "br_in_every_line"
 
 CONST_TD_EVERY_LINE       = "td_in_every_line"
 CONST_LI_EVERY_LINE       = "li_in_every_line"
+
+CONST_P_EVERY_LINE        = "p_in_every_line"
+
+CONST_H1_EVERY_LINE       = "h1_in_every_line"
+CONST_H2_EVERY_LINE       = "h2_in_every_line"
+CONST_H3_EVERY_LINE       = "h3_in_every_line"
+CONST_H4_EVERY_LINE       = "h4_in_every_line"
+CONST_H5_EVERY_LINE       = "h5_in_every_line"
+CONST_H6_EVERY_LINE       = "h6_in_every_line"
+
+
 
 TAG_BR_SLASH = "<br/>"
 TAG_BR       = "<br>"
@@ -32,8 +50,10 @@ class HapoItakEncirclementCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.list = [CONST_BR_EVERY_LINE, CONST_BR_SLASH_EVERY_LINE,
 						CONST_TD_EVERY_LINE, CONST_LI_EVERY_LINE,
-						CONST_BR, CONST_BR_SLASH,
-						CONST_TD, CONST_LI]
+						CONST_TD, CONST_LI, CONST_P_EVERY_LINE,
+						CONST_H1_EVERY_LINE, CONST_H2_EVERY_LINE,
+						CONST_H3_EVERY_LINE, CONST_H4_EVERY_LINE,
+						CONST_H5_EVERY_LINE, CONST_H6_EVERY_LINE]
 		self.view.window().show_quick_panel(self.list, lambda idx: self._on_select(idx, edit))
 
 	########################################################################
@@ -82,6 +102,27 @@ class InsertTagToBeginEndCommand(sublime_plugin.TextCommand):
 				elif tag_name == CONST_LI_EVERY_LINE:
 					selection = \
 						string_util.add_tag_to_outline_every_line(selection, CONST_LI)
+
+				elif tag_name == CONST_P_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_P)
+
+				elif tag_name == CONST_H1_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_H1)
+
+				elif tag_name == CONST_H2_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_H2)
+
+				elif tag_name == CONST_H3_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_H3)
+
+				elif tag_name == CONST_H4_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_H4)
+
+				elif tag_name == CONST_H5_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_H5)
+
+				elif tag_name == CONST_H6_EVERY_LINE:
+					selection = string_util.add_tag_to_outline_every_line(selection, CONST_H6)
 				
 				else:
 					selection = string_util.add_tag_to_outline(selection, tag_name)
@@ -92,12 +133,4 @@ class InsertTagToBeginEndCommand(sublime_plugin.TextCommand):
 
 
 
-# ############################################################################
-# # クイックパネルに関連付けられたメソッドです。
-# # 選択時、InsertMyText メソッドを呼び出すことで、選択された文字列を挿入します。
-# ############################################################################
-# def on_done(self, index):
-# 	#self.view.set_status("key1", "クイックパネルインデックス=" + index)
-# 	# if index != -1:
-# 	# 	self.view.run_command("insert_my_text", {"args":{'text':self.list[index]}})
 
