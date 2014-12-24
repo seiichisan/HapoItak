@@ -13,29 +13,13 @@ Homepage is [HapoItak](https://tolemy.sakura.ne.jp/)
 ## Example 1
 HapoItak adds comma to each word and wrap each word with double quotation by 'ctrl+alt+u' key input.
 
-Before  
-![before and after 1](https://tolemy.sakura.ne.jp/img/17_double_quotation_1.JPG)
-
-After No.1  
-![before and after 2](https://tolemy.sakura.ne.jp/img/18_double_quotation_2.JPG)
-
-After No.2  
-![before and after 3](https://tolemy.sakura.ne.jp/img/19_double_quotation_3.JPG)
-
+![before and after 1](https://tolemy.sakura.ne.jp/movie/wrapDoubleQuotation.gif)
 
 ## Example 2
 The text is surrounded with html tag by 'ctrl+alt+n' key input by HapoItak.
 The text can be able to surrounded with html tag every line.
 
-Before  
-![before and after 4](https://tolemy.sakura.ne.jp/img/14_encirclement_br_before_1.JPG)
-
-After No.1  
-![before and after 5](https://tolemy.sakura.ne.jp/img/15_encirclement_br_after_2.JPG)
-
-After No.2  
-![before and after 6](https://tolemy.sakura.ne.jp/img/16_encirclement_br_after_3.JPG)
-
+![before and after 4](https://tolemy.sakura.ne.jp/movie/wrapWithTag.gif)
 
 ## Example 3
 HapoItak replace html special character with html entities by 'ctrl+alt+y' key input.

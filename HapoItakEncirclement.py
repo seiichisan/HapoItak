@@ -89,11 +89,11 @@ class InsertTagToBeginEndCommand(sublime_plugin.TextCommand):
 				elif tag_name == CONST_BR_EVERY_LINE:
 					selection = string_util.add_word_to_end_every_line(selection, TAG_BR)
 				
-				elif tag_name == CONST_BR_SLASH:
-					selection = string_util.add_word_to_end(selection, TAG_BR_SLASH)
+				# elif tag_name == CONST_BR_SLASH:
+				# 	selection = string_util.add_word_to_end(selection, TAG_BR_SLASH)
 				
-				elif tag_name == CONST_BR:
-					selection = string_util.add_word_to_end(selection, TAG_BR)
+				# elif tag_name == CONST_BR:
+				# 	selection = string_util.add_word_to_end(selection, TAG_BR)
 
 				elif tag_name == CONST_TD_EVERY_LINE:
 					selection = \

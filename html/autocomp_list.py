@@ -33,7 +33,7 @@ def get_list(ul_default_class, max_count):
 
 	temp_str2 = temp_str2 + "</ul>\n"
 
-	return ("list_class=" + ul_default_class + "_" + \
+	return ("list_class=" + ul_default_class + "*" + \
 		str(max_count) + "\tHapoItak", temp_str2)
 
 
@@ -70,7 +70,7 @@ def get_number_list(ol_default_class, max_count):
 
 	temp_str2 = temp_str2 + "</ol>\n"
 
-	return ("number_list_class=" + ol_default_class + "_" + \
+	return ("number_list_class=" + ol_default_class + "*" + \
 		str(max_count) + "\tHapoItak", temp_str2)
 
 
