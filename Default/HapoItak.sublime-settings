@@ -22,5 +22,8 @@
 	"h3_default_class" : [],
 	"h4_default_class" : [],
 	"h5_default_class" : [],
-	"h6_default_class" : []
+	"h6_default_class" : [],
+
+	"table_tr_count" : [3],
+	"table_td_count" : [3]
 }

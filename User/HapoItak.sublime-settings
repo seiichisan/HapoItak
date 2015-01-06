@@ -6,7 +6,7 @@
 	"css_base_path": "css",
 	"javascript_base_path": "js",
 
-	"ul_default_class": ["kajogaki"],
+	"ul_default_class": ["kajogaki", "sidemenu_ul_ul"],
 	"ul_count"        : [3, 5, 7],
 
 	"ol_default_class": ["numberlist"],

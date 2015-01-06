@@ -182,8 +182,21 @@ def get_h_default_class(h_level):
 	return h_default_class
 
 
+############################################################################
+# table_tr_count を取得します。
+############################################################################
+def get_table_tr_count():
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	table_tr_count = hapo_settings.get("table_tr_count")
+	return table_tr_count
 
-
+############################################################################
+# table_td_count を取得します。
+############################################################################
+def get_table_td_count():
+	hapo_settings = sublime.load_settings("HapoItak.sublime-settings")
+	table_td_count = hapo_settings.get("table_td_count")
+	return table_td_count
 
 
 

@@ -18,7 +18,8 @@ from .html  import autocomp_style
 from .html  import autocomp_script
 from .html  import autocomp_href
 
-
+from .html  import autocomp_br
+from .html  import autocomp_table
 
 
 from .javascript import autocomp_js_document
@@ -81,7 +82,12 @@ def get_css_completions(view, prefix):
 def get_html_completions(view, prefix):
 	completions = []
 
-	if prefix[0] == "d":
+	if prefix[0] == "b":
+		# br のオートコンプリート
+		comp_list = autocomp_br.autocomp_get_br(view)
+		completions.extend(comp_list)
+
+	elif prefix[0] == "d":
 		# doctype のオートコンプリート
 		comp_list = autocomp_doctype.autocomp_get_doctype(view)
 		completions.extend(comp_list)
@@ -145,6 +151,11 @@ def get_html_completions(view, prefix):
 		# script のオートコンプリート
 		completions.append(autocomp_script.autocomp_get_script(view))
 
+	elif prefix[0] == "t":
+		# table のオートコンプリート
+		comp_list = autocomp_table.autocomp_get_table(view)
+		completions.extend(comp_list)
+
 	return completions
 
 ############################################################################
@@ -163,8 +174,6 @@ class HapoItakCompletions(sublime_plugin.EventListener):
 		word_region = view.word(curr_pos)
 		word_str    = view.substr(word_region)
 		# view.set_status("key0", "ワードはね'" + word_str + "'")
-
-
 
 		completions = []
 
