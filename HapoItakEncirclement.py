@@ -10,6 +10,7 @@ from .util import string_util
 ############################################################################
 CONST_BR_SLASH = "br/"
 CONST_BR       = "br"
+CONST_TH       = "th"
 CONST_TD       = "td"
 CONST_LI       = "li"
 CONST_P        = "p"
@@ -24,6 +25,7 @@ CONST_BR_SLASH_EVERY_LINE = "br/_in_every_line"
 CONST_BR_EVERY_LINE       = "br_in_every_line"
 
 CONST_TD_EVERY_LINE       = "td_in_every_line"
+CONST_TH_EVERY_LINE       = "th_in_every_line"
 CONST_LI_EVERY_LINE       = "li_in_every_line"
 
 CONST_P_EVERY_LINE        = "p_in_every_line"
@@ -52,6 +54,7 @@ TAG_LI = "<li>"
 class HapoItakEncirclementCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.list = [CONST_BR_EVERY_LINE, CONST_BR_SLASH_EVERY_LINE,
+						CONST_TH_EVERY_LINE,
 						CONST_TD_EVERY_LINE, CONST_LI_EVERY_LINE,
 						CONST_TD, CONST_LI, CONST_P_EVERY_LINE,
 						CONST_H1_EVERY_LINE, CONST_H2_EVERY_LINE,
@@ -72,7 +75,6 @@ class HapoItakEncirclementCommand(sublime_plugin.TextCommand):
 ############################################################################
 class InsertTagToBeginEndCommand(sublime_plugin.TextCommand):
 	def run(self, edit, args):
-		# self.view.set_status("key2", "クイックパネル")
 		
 		# # 現在のカーソル位置を取得します。
 		# curr_pos = self.view.sel()[0].begin()
@@ -93,11 +95,9 @@ class InsertTagToBeginEndCommand(sublime_plugin.TextCommand):
 				elif tag_name == CONST_BR_EVERY_LINE:
 					selection = string_util.add_word_to_end_every_line(selection, TAG_BR)
 				
-				# elif tag_name == CONST_BR_SLASH:
-				# 	selection = string_util.add_word_to_end(selection, TAG_BR_SLASH)
-				
-				# elif tag_name == CONST_BR:
-				# 	selection = string_util.add_word_to_end(selection, TAG_BR)
+				elif tag_name == CONST_TH_EVERY_LINE:
+					selection = \
+						string_util.add_tag_to_outline_every_line(selection, CONST_TH)
 
 				elif tag_name == CONST_TD_EVERY_LINE:
 					selection = \

@@ -12,7 +12,6 @@ def get_table(view, tr_count, td_count):
 	k = 1
 	i = 0
 	while i < tr_count:
-		# view.set_status("key10", "get_table ループ")
 		save += sublime_view_util.get_indent() + "<tr>\n"
 		j = 0
 		while j < td_count:
@@ -23,8 +22,6 @@ def get_table(view, tr_count, td_count):
 		save += sublime_view_util.get_indent() + "</tr>\n"
 		i += 1
 	save += "</table>\n"
-
-	# view.set_status("key11", "セーブ = " + save)
 
 	return save;
 
