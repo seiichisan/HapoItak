@@ -39,6 +39,8 @@ CONST_H6_EVERY_LINE       = "h6_in_every_line"
 
 CONST_JSP_EXPRESSION_EVERY_LINE = "<%= %>_in_every_line"
 CONST_JSP_EXPRESSION = "<%= %>"
+CONST_TD_JSP_EXPRESSION_EVERY_LINE = "td_<%= %>_in_every_line"
+
 
 
 
@@ -60,7 +62,7 @@ class HapoItakEncirclementCommand(sublime_plugin.TextCommand):
 						CONST_H1_EVERY_LINE, CONST_H2_EVERY_LINE,
 						CONST_H3_EVERY_LINE, CONST_H4_EVERY_LINE,
 						CONST_H5_EVERY_LINE, CONST_H6_EVERY_LINE,
-						CONST_JSP_EXPRESSION_EVERY_LINE, CONST_JSP_EXPRESSION]
+						CONST_JSP_EXPRESSION_EVERY_LINE, CONST_TD_JSP_EXPRESSION_EVERY_LINE, CONST_JSP_EXPRESSION]
 		self.view.window().show_quick_panel(self.list, lambda idx: self._on_select(idx, edit))
 
 	########################################################################
@@ -133,6 +135,9 @@ class InsertTagToBeginEndCommand(sublime_plugin.TextCommand):
 
 				elif tag_name == CONST_JSP_EXPRESSION_EVERY_LINE:
 					selection = string_util.add_jsp_expression_to_outline_every_line(selection)
+
+				elif tag_name == CONST_TD_JSP_EXPRESSION_EVERY_LINE:
+					selection = string_util.add_td_jsp_expression_to_outline_every_line(selection)
 
 				else:
 					selection = string_util.add_tag_to_outline(selection, tag_name)

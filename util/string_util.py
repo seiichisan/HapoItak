@@ -258,6 +258,29 @@ def add_jsp_expression_to_outline_every_line(text):
 
 
 
+############################################################################
+# text における一行毎の最初と最後に td タグと JSP エクスプレッション <%= %> を追加します。
+############################################################################
+def add_td_jsp_expression_to_outline_every_line(text):
+	text_array = text.split("\n")
+	text_array_length = len(text_array)
+
+	i = 0
+	save = ""
+	for text_line in text_array:
+		if (i == text_array_length-1) and (len(text_line) == 0):
+			# 最後の改行の場合は、tag の追加を行いません。
+			pass
+		else:
+			save = save + \
+				add_tag_to_outline_skip_space( \
+					add_jsp_expression_to_outline_skip_space(text_line), "td")
+		if not(i == text_array_length-1):
+			save = save + "\n"
+
+		i = i + 1
+
+	return save
 
 
 
